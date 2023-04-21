@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { Title, } from "@angular/platform-browser";
+import { Injectable} from "@angular/core";
+import { Title } from "@angular/platform-browser";
 import { ɵgetDOM  } from "@angular/platform-browser";
 import { stringUtils } from "../utils/string.utils";
 
@@ -29,7 +29,7 @@ export class SeoService{
 
    private setTitle(newTitle: string){
     if(stringUtils.isnullOrEmty(newTitle)){newTitle = "Defina um Titulo"}
-    //this.titleService.setTitle(newTitle + " - Eventos.IO");
+      this.titleService.setTitle(newTitle + " - Eventos.IO");
    }
 
    private setMetaDescription(description : string){
@@ -49,7 +49,7 @@ export class SeoService{
 
      if(stringUtils.isnullOrEmty(robots)){robots = "all"}
 
-     // this.robots.setAttribute('content',robots);
+    this.robots.setAttribute('content',robots);
 
    }
 
