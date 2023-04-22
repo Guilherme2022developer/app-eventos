@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule,Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 //shared componets
 import { MenuSuperiorComponent } from './shared/menu-superior/menu-superior.component';
@@ -23,6 +25,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 //services
 import { SeoService } from './services/seo.service';
+import { InscricaoComponent } from './usuario/inscricao/inscricao.component';
 
 //import {CollapseModule} from 'ngx-bootstrap/collapse';
 
@@ -34,11 +37,14 @@ import { SeoService } from './services/seo.service';
     FooterComponent,
     HomeComponent,
     MenuLoginComponent,
-    ListaEventosComponent
+    ListaEventosComponent,
+    InscricaoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     TooltipModule.forRoot(),
     CollapseModule.forRoot(),
     BrowserAnimationsModule,
