@@ -3,20 +3,20 @@ import { Title } from "@angular/platform-browser";
 import { ɵgetDOM  } from "@angular/platform-browser";
 import { stringUtils } from "../utils/string.utils";
 
-
 @Injectable()
 export class SeoService{
    private titleService: Title;
    private headElement : HTMLElement;
-   private metaDescription!: HTMLElement;   
-   private metaKeywords!: HTMLElement;
-   private robots!: HTMLElement;
+   private metaDescription: HTMLElement;   
+   private metaKeywords: HTMLElement;
+   private robots: HTMLElement;
    private DOM : any;
+  
 
    public constructor(titleService: Title){
     this.titleService = titleService;
-    this.DOM = ɵgetDOM();
-    this.headElement = this.DOM.getDefaultDocument('head');
+    this.DOM = document;
+    this.headElement = this.DOM.querySelector("head");
     this.setTitle('');
    }
 
@@ -35,13 +35,13 @@ export class SeoService{
    private setMetaDescription(description : string){
     this.metaDescription = this.getOrCreateMetaElement('description');
     if(stringUtils.isnullOrEmty(description)){description = "Aqui você encontra um evento técnico próximo de você"}
-    // this.metaDescription.setAttribute('content', description);
+     this.metaDescription.setAttribute('content', description);
    }
 
    private setMetaKeywords(Keywords: string){
     this.metaKeywords = this.getOrCreateMetaElement('keywords');
     if(stringUtils.isnullOrEmty(Keywords)){Keywords = "eventos,workshops,encontros,congressos,comunidades,tecnologias"}
-   // this.metaKeywords.setAttribute('content', Keywords);
+     this.metaKeywords.setAttribute('content', Keywords);
    }
 
    private setMetaRobots(robots: string){
@@ -49,13 +49,13 @@ export class SeoService{
 
      if(stringUtils.isnullOrEmty(robots)){robots = "all"}
 
-    this.robots.setAttribute('content',robots);
+      this.robots.setAttribute('content',robots);
 
    }
 
    private getOrCreateMetaElement(name: string): HTMLElement{
     let el: HTMLElement;
-    el = this.DOM.getDefaultDocument('meta[name=' + name + ']');
+    el = this.DOM.querySelector('meta[name=' + name + ']');
     if(el === null){
         el = this.DOM.createElement('meta');
         el.setAttribute('name', name);
