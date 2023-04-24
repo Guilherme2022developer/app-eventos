@@ -33,7 +33,7 @@
     <div class="form-group" [ngClass]="{'has-error': displayMessage['senha']}"  >
         <label class="col-md2 control-label">Senha</label>
         <div class="col-md10">
-            <input class="form-control" id="senha" type="text" placeholder="Senha (requerido)" formControlName="senha" >
+            <input class="form-control" id="senha" type="password" placeholder="Senha (requerido)" formControlName="senha" >
             <span class="text-danger">
                 <p [innerHTML]="displayMessage['senha']" ></p>
             </span>
@@ -42,7 +42,7 @@
     <div class="form-group" [ngClass]="{'has-error': displayMessage['senhaConfirmacao']}" >
         <label class="col-md2 control-label">Senha Confirmar</label>
         <div class="col-md10">
-            <input class="form-control" id="SenhaConfirmacao" type="text" placeholder="Senha Confirmar (requerido)" formControlName="senhaConfirmacao" >
+            <input class="form-control" id="SenhaConfirmacao" type="password" placeholder="Senha Confirmar (requerido)" formControlName="senhaConfirmacao" >
             <span class="text-danger">
                 <p [innerHTML]="displayMessage['senhaConfirmacao']" ></p>
             </span>

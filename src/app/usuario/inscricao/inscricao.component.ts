@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
+import { FormBuilder, FormControlName, FormGroup, Validators } from '@angular/forms';
+import { fromEvent, merge, Observable } from 'rxjs';
 import { GenericValidator } from 'src/app/utils/generic.form.validator';
 import { Organizador } from './models/organizador';
+
 
 @Component({
   selector: 'app-inscricao',
   templateUrl: './inscricao.component.html',
   styleUrls: ['./inscricao.component.css']
 })
-export class InscricaoComponent implements OnInit {
+export class InscricaoComponent implements OnInit, AfterViewInit {
+
+@ViewChildren(FormControlName,{read: ElementRef}) formInputElements: ElementRef[];
 
 inscricaoForm : FormGroup;
 organizador: Organizador;
@@ -48,7 +52,7 @@ constructor(private fb: FormBuilder) {
   }
   this.genericValidator = new GenericValidator(this.validationMessages);
 }
-
+ 
 ngOnInit() {
   this.inscricaoForm = this.fb.group({
    nome: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(150)]],
@@ -59,9 +63,18 @@ ngOnInit() {
 
   });
 }
+
+ngAfterViewInit() {
+ let controlBlurs: Observable<any>[] = this.formInputElements.map((formControl:ElementRef) => fromEvent(formControl.nativeElement,'blur'));
+
+ merge(...controlBlurs).subscribe(value => {
+  this.displayMessage =  this.genericValidator.processMessages(this.inscricaoForm);
+ });
+}
+
 adicionarOrganizador(){
  
-   this.displayMessage = this.genericValidator.processMessages(this.inscricaoForm);
+   //this.displayMessage = this.genericValidator.processMessages(this.inscricaoForm);
    
   if(this,this.inscricaoForm.valid && this.inscricaoForm.dirty) {
 
