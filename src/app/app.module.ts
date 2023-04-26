@@ -3,6 +3,7 @@ import { BrowserModule,Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 
 //shared componets
@@ -26,6 +27,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 //services
 import { SeoService } from './services/seo.service';
 import { InscricaoComponent } from './usuario/inscricao/inscricao.component';
+import { OrganizadorService } from './services/organizador.sevice';
 
 //import {CollapseModule} from 'ngx-bootstrap/collapse';
 
@@ -47,13 +49,15 @@ import { InscricaoComponent } from './usuario/inscricao/inscricao.component';
     ReactiveFormsModule,
     TooltipModule.forRoot(),
     CollapseModule.forRoot(),
+    HttpClient,
     BrowserAnimationsModule,
     CarouselModule.forRoot(),
-    RouterModule.forRoot(rootRouterConfig,{useHash: false})
+    RouterModule.forRoot(rootRouterConfig,{useHash: false}),
   ],
   providers: [
   Title,
-  SeoService
+  SeoService,
+  OrganizadorService
   ],
   bootstrap: [AppComponent]
 })
