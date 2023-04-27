@@ -59,7 +59,7 @@ export class InscricaoComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.inscricaoForm = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(150)]],
-      cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
+     // cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
       senhaConfirmacao: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],

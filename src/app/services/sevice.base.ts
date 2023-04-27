@@ -3,7 +3,7 @@ import { throwError } from 'rxjs';
 
 
 export abstract class SeviceBase {
-protected UrlServiceV1: string = "http://localhost:7173/api/v2/";
+protected UrlServiceV1: string = "https://localhost:7173/api/v2/";
     protected ObterHeaderJson(){
         return {
             headers: new HttpHeaders({

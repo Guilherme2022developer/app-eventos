@@ -3,7 +3,7 @@ import { BrowserModule,Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 
 
 //shared componets
@@ -49,7 +49,7 @@ import { OrganizadorService } from './services/organizador.sevice';
     ReactiveFormsModule,
     TooltipModule.forRoot(),
     CollapseModule.forRoot(),
-    HttpClient,
+    HttpClientModule,
     BrowserAnimationsModule,
     CarouselModule.forRoot(),
     RouterModule.forRoot(rootRouterConfig,{useHash: false}),
