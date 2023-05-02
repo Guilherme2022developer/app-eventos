@@ -26,28 +26,28 @@ export class InscricaoComponent implements OnInit, AfterViewInit {
   constructor(private fb: FormBuilder, private organizadorSevice: OrganizadorService, private router: Router ) {
 
     this.validationMessages = {
-      nome: {
-        require: 'O Nome é requirido',
-        minlength: 'O Nome precisa ter no mínimo 2 caracteres',
-        maxlength: 'O Nome precisa ter no máximo 150 caracteres'
-      },
-      cpf: {
-        require: 'O CPF é requirido',
-        minlength: 'O CPF precisa ter no mínimo 2 caracteres',
-        maxlength: 'O CPF precisa ter no máximo 150 caracteres'
-        //rangeLength: 'O CPF precisa ter no conter 11 caracteres',
-      },
-      email: {
+      // nome: {
+      //   require: 'O Nome é requirido',
+      //   minlength: 'O Nome precisa ter no mínimo 2 caracteres',
+      //   maxlength: 'O Nome precisa ter no máximo 150 caracteres'
+      // },
+      // cpf: {
+      //   require: 'O CPF é requirido',
+      //   minlength: 'O CPF precisa ter no mínimo 2 caracteres',
+      //   maxlength: 'O CPF precisa ter no máximo 150 caracteres'
+      //   //rangeLength: 'O CPF precisa ter no conter 11 caracteres',
+      // },
+      Email: {
         require: 'O Email é requirido',
         email: 'Informe o e-mail',
 
       },
-      senha: {
+      Password: {
         require: 'O Senha é requirido',
         minlength: 'O Senha precisa ter no mínimo 6 caracteres',
 
       },
-      senhaConfirmacao: {
+      ConfirmPassWord: {
         require: 'Informe a senha novamente',
         minlength: 'O Senha precisa ter no mínimo 6 caracteres',
         //equalTo: 'As senhas não conferem'
@@ -58,11 +58,13 @@ export class InscricaoComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.inscricaoForm = this.fb.group({
-      nome: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(150)]],
+      //nome: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(150)]],
      // cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
-      email: ['', [Validators.required, Validators.email]],
-      senha: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
-      senhaConfirmacao: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
+     Email: ['', [Validators.required, Validators.email]],
+     Password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
+     ConfirmPassWord: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
+     Token:[],
+     role:[]
 
     });
   }
@@ -96,8 +98,8 @@ export class InscricaoComponent implements OnInit, AfterViewInit {
   onSalveComplete(response: any){
     this.inscricaoForm.reset();
     this.errors = [];
-    localStorage.setItem('eio.token',response.result.access_token);
-    localStorage.setItem('eio.user',JSON.stringify(response.result.user));
+    localStorage.setItem('eio.token',response.token);
+    localStorage.setItem('eio.user',JSON.stringify(response.email));
     this.router.navigate(['/home']);
 
   }
