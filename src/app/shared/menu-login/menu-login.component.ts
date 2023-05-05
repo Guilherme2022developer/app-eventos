@@ -7,18 +7,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu-login.component.css']
 })
 export class MenuLoginComponent implements OnInit {
-  public token: string | null;
-  public user: { nome: string; };
+  public token: string | null = null;
+  public user: null = null;
   public nome: string = '';
 
 constructor(private router: Router ){} 
 
-  usuarioLogado(): boolean {
-    this.token = localStorage.getItem('eio.token');
-    //this.user = JSON.parse(localStorage.getItem('eio.user'));
+usuarioLogado(): boolean {
+  this.token = localStorage.getItem('eio.token');
+  this.user = JSON.parse(localStorage.getItem('eio.user') || '{}');
   
     if(this.user) {
-      this.nome = this.user.nome;
+      this.nome = this.user;
      
     }
     return this.token !== null;

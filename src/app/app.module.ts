@@ -6,6 +6,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 
 
+import {
+  NgxSnotifireModule,
+  SnotifireService,
+  ToastDefaults,
+} from "ngx-snotifire";
+
 //shared componets
 import { MenuSuperiorComponent } from './shared/menu-superior/menu-superior.component';
 import { MainPrincipalComponent } from './shared/main-principal/main-principal.component';
@@ -44,6 +50,7 @@ import { OrganizadorService } from './services/organizador.sevice';
   ],
   imports: [
     BrowserModule,
+    NgxSnotifireModule.forRoot(),
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -57,7 +64,9 @@ import { OrganizadorService } from './services/organizador.sevice';
   providers: [
   Title,
   SeoService,
-  OrganizadorService
+  OrganizadorService,
+  { provide: "snotifireConfig", useValue: ToastDefaults },
+    SnotifireService,
   ],
   bootstrap: [AppComponent]
 })

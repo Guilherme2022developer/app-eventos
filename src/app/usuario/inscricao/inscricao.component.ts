@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SnotifireService } from 'ngx-snotifire';
 import { fromEvent, merge, Observable } from 'rxjs';
 import { OrganizadorService } from 'src/app/services/organizador.sevice';
 import { GenericValidator } from 'src/app/utils/generic.form.validator';
@@ -23,7 +24,7 @@ export class InscricaoComponent implements OnInit, AfterViewInit {
   displayMessage: { [key: string]: string } = {};
   errors: any[] = [];
 
-  constructor(private fb: FormBuilder, private organizadorSevice: OrganizadorService, private router: Router ) {
+  constructor(private fb: FormBuilder, private organizadorSevice: OrganizadorService, private router: Router, private snotifireService: SnotifireService  ) {
 
     this.validationMessages = {
       // nome: {
@@ -104,7 +105,17 @@ export class InscricaoComponent implements OnInit, AfterViewInit {
 
   }
 
-  onError(fail: any){
-   this.errors = fail.error.errors;
+  onError(fail: any) {
+
+   var log = this.snotifireService.success('Opa deu certo!', 'Sucesso', {
+      timeout: 2000,
+      showProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+    });
+
+    console.log(log);
+    this.errors = fail.error.errors;
+
   }
 }

@@ -26,8 +26,8 @@
             ],
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
-            ],
+              "src/styles.scss",
+            "./node_modules/ngx-snotifire/styles/material.scss"],
             "scripts": []
           },
           "configurations": {
@@ -88,7 +88,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss",
+              "./node_modules/ngx-snotifire/styles/material.scss"
             ],
             "scripts": []
           }
