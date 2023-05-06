@@ -34,6 +34,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SeoService } from './services/seo.service';
 import { InscricaoComponent } from './usuario/inscricao/inscricao.component';
 import { OrganizadorService } from './services/organizador.sevice';
+import { LoginComponent } from './usuario/login/login.component';
 
 //import {CollapseModule} from 'ngx-bootstrap/collapse';
 
@@ -46,7 +47,8 @@ import { OrganizadorService } from './services/organizador.sevice';
     HomeComponent,
     MenuLoginComponent,
     ListaEventosComponent,
-    InscricaoComponent
+    InscricaoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

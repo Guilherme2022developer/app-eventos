@@ -19,6 +19,15 @@ export class OrganizadorService extends SeviceBase {
         );
     } 
 
+    login(organizador: Organizador): Observable<Organizador>{
+        return this.http
+        .post(this.UrlServiceV1 + 'entrar',organizador,super.ObterHeaderJson())
+        .pipe(
+            map(super.extractData),
+            catchError(super.seviceError)
+        );
+    } 
+
     
 }
 
