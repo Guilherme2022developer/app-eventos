@@ -35,6 +35,8 @@ import { SeoService } from './services/seo.service';
 import { InscricaoComponent } from './usuario/inscricao/inscricao.component';
 import { OrganizadorService } from './services/organizador.sevice';
 import { LoginComponent } from './usuario/login/login.component';
+import { AdicionarEventoComponent } from './Eventos/adicionar-evento/adicionar-evento.component';
+import { AuthService } from './services/auth.service';
 
 //import {CollapseModule} from 'ngx-bootstrap/collapse';
 
@@ -48,7 +50,8 @@ import { LoginComponent } from './usuario/login/login.component';
     MenuLoginComponent,
     ListaEventosComponent,
     InscricaoComponent,
-    LoginComponent
+    LoginComponent,
+    AdicionarEventoComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +69,7 @@ import { LoginComponent } from './usuario/login/login.component';
   providers: [
   Title,
   SeoService,
+  AuthService,
   OrganizadorService,
   { provide: "snotifireConfig", useValue: ToastDefaults },
     SnotifireService,
