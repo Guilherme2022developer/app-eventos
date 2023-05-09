@@ -37,6 +37,7 @@ import { OrganizadorService } from './services/organizador.sevice';
 import { LoginComponent } from './usuario/login/login.component';
 import { AdicionarEventoComponent } from './Eventos/adicionar-evento/adicionar-evento.component';
 import { AuthService } from './services/auth.service';
+import { AcessoNegadoComponent } from './shared/acesso-negado/acesso-negado.component';
 
 //import {CollapseModule} from 'ngx-bootstrap/collapse';
 
@@ -51,7 +52,8 @@ import { AuthService } from './services/auth.service';
     ListaEventosComponent,
     InscricaoComponent,
     LoginComponent,
-    AdicionarEventoComponent
+    AdicionarEventoComponent,
+    AcessoNegadoComponent
   ],
   imports: [
     BrowserModule,
