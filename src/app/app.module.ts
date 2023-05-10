@@ -3,7 +3,7 @@ import { BrowserModule,Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 
 import {
@@ -38,6 +38,7 @@ import { LoginComponent } from './usuario/login/login.component';
 import { AdicionarEventoComponent } from './Eventos/adicionar-evento/adicionar-evento.component';
 import { AuthService } from './services/auth.service';
 import { AcessoNegadoComponent } from './shared/acesso-negado/acesso-negado.component';
+import { ErrorInterceptor } from './services/htpp.error.handler';
 
 //import {CollapseModule} from 'ngx-bootstrap/collapse';
 
@@ -73,6 +74,11 @@ import { AcessoNegadoComponent } from './shared/acesso-negado/acesso-negado.comp
   SeoService,
   AuthService,
   OrganizadorService,
+  {
+    provide : HTTP_INTERCEPTORS,
+    useClass: ErrorInterceptor,
+    multi: true
+  },
   { provide: "snotifireConfig", useValue: ToastDefaults },
     SnotifireService,
   ],
