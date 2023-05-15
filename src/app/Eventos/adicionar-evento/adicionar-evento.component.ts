@@ -3,6 +3,7 @@ import { FormBuilder, FormControlName, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import { SnotifireService } from 'ngx-snotifire';
 import { fromEvent, merge, Observable } from 'rxjs';
+import { EventoService } from 'src/app/services/evento.service';
 import { GenericValidator } from 'src/app/utils/generic.form.validator';
 import { Categoria, Endereco, Evento } from '../modls_eventos/evento';
 
@@ -27,7 +28,7 @@ export class AdicionarEventoComponent implements OnInit, AfterViewInit {
   private genericValidator: GenericValidator;
   public displayMessage: { [key: string]: string } = {};
 
-  constructor(private fb: FormBuilder, private router: Router, private snotifireService: SnotifireService){
+  constructor(private fb: FormBuilder, private router: Router, private snotifireService: SnotifireService, private eventoService : EventoService) {
     this.validationMessages = {
       nome: {
         require: 'O Nome é requirido',
@@ -39,7 +40,7 @@ export class AdicionarEventoComponent implements OnInit, AfterViewInit {
       },
       dataFim: {
         require: 'O dataFim é requirido',
-       
+
 
       },
       organizadorId: {
@@ -50,13 +51,84 @@ export class AdicionarEventoComponent implements OnInit, AfterViewInit {
     this.evento = new Evento();
     this.evento.endereco = new Endereco();
   }
-  
 
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-  ngAfterViewInit(): void {
-    throw new Error('Method not implemented.');
+  ngOnInit() {
+    this.eventoForm = this.fb.group({
+      nome: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(150)]],
+      // cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
+      organizadorId: ['', [Validators.required]],
+      decricaoCurta: [''],
+      descricaoConga: [''],
+      dataInicio: ['', [Validators.required]],
+      gratuito: [''],
+      valor: ['0'],
+      online: [''],
+      nomeEmpresa: [''],
+      logradouro: [''],
+      numero: [''],
+      complemento: [''],
+      bairro: [''],
+      cidade: [''],
+      estado: [''],
+      cep: [''],
+      Token: [],
+      role: []
+
+    });
   }
 
+
+  ngAfterViewInit() {
+    let controlBlurs: Observable<any>[] = this.formInputElements.map((formControl: ElementRef) => fromEvent(formControl.nativeElement, 'blur'));
+
+    merge(...controlBlurs).subscribe(value => {
+      this.displayMessage = this.genericValidator.processMessages(this.eventoForm);
+    });
+  }
+
+  adicionarEvento() {
+    if (this, this.eventoForm.valid && this.eventoForm.dirty) {
+
+      const e = Object.assign({}, this.eventoForm, this.eventoForm.value);
+      e.endereco.logradouro = e.logradouro;
+      e.endereco.numero = e.numero;
+      e.endereco.complemento = e.complemento;
+      e.endereco.bairro = e.bairro;
+      e.endereco.cep = e.cep;
+      e.endereco.cidade = e.cidade;
+      e.endereco.estado = e.estado;
+    }
+  }
+
+  onSalveComplete(response: any){
+    this.eventoForm.reset();
+    this.errors = [];
+    localStorage.setItem('eio.token',response.token);
+    localStorage.setItem('eio.user',JSON.stringify(response.email));
+    let toasterMessage =  this.snotifireService.success('Registro realizado com Sucesso!', 'Bem vindo', {
+      timeout: 2000,
+      showProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+    });
+
+    if(toasterMessage){
+      toasterMessage.eventEmitter.subscribe(()=>{
+        this.router.navigate(['/lista-eventos']);
+      });
+    }
+    
+  }
+
+  onError(fail: any) {
+
+  this.snotifireService.error('Ocorreu um erro!', 'OPS!', {
+      timeout: 2000,
+      showProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+    });
+    this.errors = fail.error.errors;
+
+  }
 }

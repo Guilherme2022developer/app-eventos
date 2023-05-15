@@ -9,17 +9,17 @@
       </ul>
     </div>
 
-    <div class="form-group" [ngClass]="{'has-error': displayMessage[0].nome}">
+    <div class="form-group" [ngClass]="{'has-error': displayMessage['nome']}">
       <label class="col-md-2 control-label" for="nome"> Nome do Evento </label>
       <div class="col-md-10">
         <input class="form-control" id="nome" type="text" placeholder="Nome (requerido)" formControlName="nome" />
-        <span class="text-danger" *ngIf="displayMessage[0].nome">
+        <span class="text-danger">
           <р [inneHTML]="displayMessage[0].nome>/p>
           </span>
         </div>
       </div>
       
-      <div class=" form-group">
+      <div class="form-group" [ngClass]="{'has-error': displayMessage['descricaCurta']}" >
             <label class="col-md-2 control-label">Descrição Curta</label>
             <div class="col-md-10">
               <input class="form-control" id="descricaoCurta" type="text" placeholder="Descrição Curta"
@@ -27,7 +27,7 @@
             </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{'has-error': displayMessage['descricaoLonga']}" >
         <label class="col-md-2 control-label">Mais detalhes</label>
         <div class="col-md-10">
           <textarea class="form-control" id="descricaoLonga" cols="40" rows="5" placeholder="Descrição Longa"
@@ -35,48 +35,48 @@
         </div>
       </div>
 
-      <div class="form-group" [ngClass]="{'has-error': displayMessage[0].categoriald }">
+      <div class="form-group" [ngClass]="{'has-error': displayMessage['categoriaId']}">
         <label class="col-md-2 control-label">Categoria</label>
         <div class="col-md-10">
           <select class="form-control" formControlName="categoriaId" id="categoriaId">
             <!-- <option *ngFor="let categoria of categorias" >{{ categoria.nome }<<option> -->
             <option value="">Meetup</option>
           </select>
-          <span class="text-danger" *ngIf="displayMessage[0].categoriald">
-            <p [innerHTML]="displayMessage[0].categoriald"></p>
+          <span class="text-danger">
+            <p></p>
           </span>
         </div>
       </div>
 
-      <div class="form-group" [ngClass]="{'has-error': displayMessage[0].dataInicio }">
+      <div class="form-group" [ngClass]="{'has-error': displayMessage['dataInicio']}">
         <label class="col-md-2 control-label">Data de Início</label>
         <div class="col-md-10">
           <!-- <my-date-picker id="dataInicio" name="dataInicio" [options]="myDatePickerOptions" formControlName= "dataInicio"></my-date-picker> -->
           <input type="text" id="dataInicio" name="dataInicio" formControlName="dataInicio">
-          <span class="text-danger" *ngIf="displayMessage[0].dataInicio">
+          <span class="text-danger">
             <p [innerHTML="displayMessage.dataInicio"></p>
           </span>
         </div>
       </div>
 
-      <div class="form-group" [ngClass]="{'has-error': displayMessage[0].dataFim }">
+      <div class="form-group" [ngClass]="{'has-error': displayMessage['dataFim']}">
         <label class="col-md-2 control-label">Data de Início</label>
         <div class="col-md-10">
           <!-- <my-date-picker id="dataFim" name="dataFim" [options]="myDatePickerOptions" formControlName= "dataFim"></my-date-picker> -->
           <input type="text" id="dataFim" name="dataFim" formControlName="dataFim">
-          <span class="text-danger" *ngIf="displayMessage[0].dataFim">
+          <span class="text-danger">
             <p [innerHTML="displayMessage.dataFim"></p>
           </span>
         </div>
       </div>
 
-      <div class="form-group" [ngClass]="{'has-error': displayMessage[0].gratuito }">
+      <div class="form-group" [ngClass]="{'has-error': displayMessage['gratuito']}">
         <label class="col-md-2 control-label">Gratuito</label>
         <div class="col-md-10">
           <input type="checkbox" class="form-control" id="gratuito" [(ngModel)]="gratuito" placeholder="gratuito"
             formControlName="gratuito">
           <label>Será gratuito</label>
-          <span class="text-danger" *ngIf="displayMessage[0].gratuito">
+          <span class="text-danger">
             <p [innerHTML="displayMessage.gratuito"></p>
           </span>
         </div>
@@ -89,13 +89,13 @@
         </div>
       </div>
 
-      <div class="form-group" [ngClass]="{'has-error': displayMessage[0].online }">
+      <div class="form-group" [ngClass]="{'has-error': displayMessage['online']}">
         <label class="col-md-2 control-label">Gratuito</label>
         <div class="col-md-10">
           <input type="checkbox" class="form-control" id="online" [(ngModel)]="online" placeholder="online"
             formControlName="online">
           <label for="online">Será online</label>
-          <span class="text-danger" *ngIf="displayMessage[0].online">
+          <span class="text-danger">
             <p [innerHTML="displayMessage[0].online"></p>
           </span>
         </div>
@@ -104,68 +104,68 @@
       <div id="partialEndereco" *ngIf="!online">
         <hr>
         <h3> Endereço </h3>
-        <div class="form-group" [ngClass]="{'has-error': displayMessage[0].logradouro }">
+        <div class="form-group" [ngClass]="{'has-error': displayMessage['logradouro']}">
           <label class="col-md-2 control-label">logradouro</label>
           <div class="col-md-10">
             <input type="text" id="logradouro" name="logradouro" formControlName="logradouro">
-            <span class="text-danger" *ngIf="displayMessage[0].logradouro">
+            <span class="text-danger">
               <p [innerHTML="displayMessage.logradouro"></p>
             </span>
           </div>
         </div>
 
 
-        <div class="form-group" [ngClass]="{'has-error': displayMessage[0].numero }">
+        <div class="form-group" [ngClass]="{'has-error': displayMessage['numero']}">
           <label class="col-md-2 control-label">numero</label>
           <div class="col-md-10">
             <input type="text" id="numero" name="numero" formControlName="numero">
-            <span class="text-danger" *ngIf="displayMessage[0].numero">
+            <span class="text-danger">
               <p [innerHTML="displayMessage.numero"></p>
             </span>
           </div>
         </div>
 
-        <div class="form-group" [ngClass]="{'has-error': displayMessage[0].complemento }">
+        <div class="form-group" [ngClass]="{'has-error': displayMessage['complemento']}">
           <label class="col-md-2 control-label">complemento</label>
           <div class="col-md-10">
             <input type="text" id="complemento" name="complemento" formControlName="complemento">
-            <span class="text-danger" *ngIf="displayMessage[0].complemento">
+            <span class="text-danger">
               <p [innerHTML="displayMessage.complemento"></p>
             </span>
           </div>
         </div>
 
-        <div class="form-group" [ngClass]="{'has-error': displayMessage[0].bairro }">
+        <div class="form-group" [ngClass]="{'has-error': displayMessage['bairro']}">
           <label class="col-md-2 control-label">bairro</label>
           <div class="col-md-10">
             <input type="text" id="bairro" name="bairro" formControlName="bairro">
-            <span class="text-danger" *ngIf="displayMessage[0].bairro">
+            <span class="text-danger">
               <p [innerHTML="displayMessage.bairro"></p>
             </span>
           </div>
         </div>
 
-        <div class="form-group" [ngClass]="{'has-error': displayMessage[0].cep }">
+        <div class="form-group" [ngClass]="{'has-error': displayMessage['cep']}">
           <label class="col-md-2 control-label">cep</label>
           <div class="col-md-10">
-            <input type="text" id="cep" name="bairro" formControlName="cep">
-            <span class="text-danger" *ngIf="displayMessage[0].cep">
+            <input type="text" id="cep" name="cep" formControlName="cep">
+            <span class="text-danger">
               <p [innerHTML="displayMessage.cep"></p>
             </span>
           </div>
         </div>
 
-        <div class="form-group" [ngClass]="{'has-error': displayMessage[0].cidade }">
+        <div class="form-group" [ngClass]="{'has-error': displayMessage['cidade']}">
           <label class="col-md-2 control-label">cep</label>
           <div class="col-md-10">
             <input type="text" id="cidade" name="bairro" formControlName="cidade">
-            <span class="text-danger" *ngIf="displayMessage[0].cidade">
+            <span class="text-danger">
               <p [innerHTML="displayMessage.cidade"></p>
             </span>
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" [ngClass]="{'has-error': displayMessage['estado']}" >
           <label class="col-md-2 control-label">Estado</label>
           <div class="col-md-10">
             <select class="form-group" id="estado" formControlName="estado">
@@ -176,11 +176,11 @@
         </div>
 
       </div>
-      
+
       <div class="form-group">
         <div class="col-md-4 col-md-offset-2">
           <button class="btn btn-success" id="Registrar" type="submit">Registrar</button>
         </div>
       </div>
+    </div>
 </form>
-  

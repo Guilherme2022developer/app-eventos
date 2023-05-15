@@ -39,6 +39,7 @@ import { AdicionarEventoComponent } from './Eventos/adicionar-evento/adicionar-e
 import { AuthService } from './services/auth.service';
 import { AcessoNegadoComponent } from './shared/acesso-negado/acesso-negado.component';
 import { ErrorInterceptor } from './services/htpp.error.handler';
+import { EventoService } from './services/evento.service';
 
 //import {CollapseModule} from 'ngx-bootstrap/collapse';
 
@@ -73,6 +74,7 @@ import { ErrorInterceptor } from './services/htpp.error.handler';
   Title,
   SeoService,
   AuthService,
+  EventoService,
   OrganizadorService,
   {
     provide : HTTP_INTERCEPTORS,
