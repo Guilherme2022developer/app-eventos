@@ -14,7 +14,7 @@ export class EventoService extends SeviceBase{
 
         ObterCategoria() : Observable<Categoria[]>{
             return this.http
-            .get<Categoria[]>(this.UrlServiceV1 + "eventos/categorias")
+            .get<Categoria[]>(this.UrlServiceV1 + "eventos/obter-categorias")
             .pipe(catchError(super.seviceError));
         }
 

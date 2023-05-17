@@ -20,7 +20,7 @@ export class AdicionarEventoComponent implements OnInit, AfterViewInit {
   public eventoForm: FormGroup;
   public errors: any[] = [];
   public evento: Evento;
-  public categorias: Categoria;
+  public categorias: Categoria[];
   public gratuito: Boolean;
   public online: Boolean;
 
@@ -75,6 +75,13 @@ export class AdicionarEventoComponent implements OnInit, AfterViewInit {
       role: []
 
     });
+
+    this.eventoService.ObterCategoria()
+    .subscribe(
+      categorias => this.categorias = categorias,
+      error => this.errors = error
+      
+    );
   }
 
 
@@ -97,6 +104,11 @@ export class AdicionarEventoComponent implements OnInit, AfterViewInit {
       e.endereco.cep = e.cep;
       e.endereco.cidade = e.cidade;
       e.endereco.estado = e.estado;
+
+      this.eventoService.registrarEvento(e).subscribe(
+        result => {this.onSalveComplete},
+        fail => {this.onError(fail)}
+      );
     }
   }
 
