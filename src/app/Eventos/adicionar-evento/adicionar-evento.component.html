@@ -23,7 +23,7 @@
       <label class="col-md-2 control-label">Descrição Curta</label>
       <div class="col-md-10">
         <input class="form-control" id="descricaoCurta" type="text" placeholder="Descrição Curta"
-          formControlName="descricaCurta">
+          formControlName="decricaoCurta">
         <span class="text-danger">
           <p [innerHTML]="displayMessage['descricaCurta']"></p>
         </span>
@@ -34,7 +34,7 @@
       <label class="col-md-2 control-label">Mais detalhes</label>
       <div class="col-md-10">
         <textarea class="form-control" id="descricaoLonga" cols="40" rows="5" placeholder="Descrição Longa"
-          formControlName="descricaLonga"></textarea>
+          formControlName="descricaolonga"></textarea>
         <span class="text-danger">
           <p [innerHTML]="displayMessage['descricaoLonga']"></p>
         </span>
@@ -44,7 +44,7 @@
     <div class="form-group" [ngClass]="{'has-error': displayMessage['categoriaId']}">
       <label class="col-md-2 control-label">Categoria</label>
       <div class="col-md-10">
-        <select class="form-control" formControlName="categoriaId" id="categoriaId">
+        <select class="form-control" formControlName="organizadorId" id="categoriaId">
           <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nome }}</option>
         </select>
         <span class="text-danger">
@@ -65,7 +65,7 @@
     <div class="form-group" [ngClass]="{'has-error': displayMessage['dataFim']}">
       <label class="col-md-2 control-label">Data de Fim</label>
       <div class="col-md-10">
-        <input type="text" id="dataFim" name="dataFim" formControlName="dataFim">
+        <input type="text" id="dataFim" name="dataFim" formControlName="datafim">
         <span class="text-danger">
           <p [innerHTML]="displayMessage['dataFim']"></p>
         </span>

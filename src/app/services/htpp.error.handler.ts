@@ -16,6 +16,8 @@ export class ErrorInterceptor implements HttpInterceptor {
             if (err instanceof HttpErrorResponse) {
 
                 if (err.status === 401) {
+                    localStorage.removeItem('eio.token');
+                    localStorage.removeItem('eio.user');
                     this.router.navigate(['/entrar']);
                 }
                 if (err.status === 403) {

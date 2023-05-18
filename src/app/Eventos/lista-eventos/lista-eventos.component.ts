@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { EventoService } from 'src/app/services/evento.service';
 import { SeoModel, SeoService } from 'src/app/services/seo.service';
+import { Evento } from '../modls_eventos/evento';
 
 
 @Component({
@@ -9,7 +11,11 @@ import { SeoModel, SeoService } from 'src/app/services/seo.service';
 })
 export class ListaEventosComponent implements OnInit {
 
-  constructor(seoService: SeoService){
+  public eventos: Evento[];
+  errorMessage: string;
+
+
+  constructor(seoService: SeoService, private eventoService: EventoService){
    
     let seoModel: SeoModel = <SeoModel>{
       title: 'Próximos Eventos',

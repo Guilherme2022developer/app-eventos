@@ -40,6 +40,7 @@ import { AuthService } from './services/auth.service';
 import { AcessoNegadoComponent } from './shared/acesso-negado/acesso-negado.component';
 import { ErrorInterceptor } from './services/htpp.error.handler';
 import { EventoService } from './services/evento.service';
+import { NaoEncontradoComponent } from './shared/nao-encontrado/nao-encontrado.component';
 
 //import {CollapseModule} from 'ngx-bootstrap/collapse';
 
@@ -55,7 +56,8 @@ import { EventoService } from './services/evento.service';
     InscricaoComponent,
     LoginComponent,
     AdicionarEventoComponent,
-    AcessoNegadoComponent
+    AcessoNegadoComponent,
+    NaoEncontradoComponent
   ],
   imports: [
     BrowserModule,

@@ -23,4 +23,12 @@ export class EventoService extends SeviceBase{
             .post(this.UrlServiceV1 + "evento", evento, super.ObterAuthHeaderJson())
             .pipe(map(super.extractData),catchError(super.seviceError));
         }
+
+         obterUsuario() {
+            const item = localStorage.getItem('eio.user');
+            if (item !== null) {
+                return JSON.parse(item);
+            }
+            return null;
+        }
 }

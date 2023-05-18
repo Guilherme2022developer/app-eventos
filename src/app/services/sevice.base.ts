@@ -27,13 +27,13 @@ export abstract class SeviceBase {
         return localStorage.getItem('eio.token');
     }
 
-    protected obterUsuario() {
-        const item = localStorage.getItem('eio.user');
-        if (item !== null) {
-            return JSON.parse(item);
-        }
-        return null;
-    }
+    // public obterUsuario() {
+    //     const item = localStorage.getItem('eio.user');
+    //     if (item !== null) {
+    //         return JSON.parse(item);
+    //     }
+    //     return null;
+    // }
 
     protected extractData(response: any) {
         return response.data || {}

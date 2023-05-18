@@ -58,8 +58,9 @@ export class AdicionarEventoComponent implements OnInit, AfterViewInit {
       // cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
       organizadorId: ['', [Validators.required]],
       decricaoCurta: [''],
-      descricaoConga: [''],
+      descricaolonga: [''],
       dataInicio: ['', [Validators.required]],
+      datafim: ['', [Validators.required]],
       gratuito: [''],
       valor: ['0'],
       online: [''],
@@ -97,6 +98,9 @@ export class AdicionarEventoComponent implements OnInit, AfterViewInit {
     if (this, this.eventoForm.valid && this.eventoForm.dirty) {
 
       const e = Object.assign({}, this.eventoForm, this.eventoForm.value);
+      let user = this.eventoService.obterUsuario();
+
+      e.organizadorId = user.Id;
       e.endereco.logradouro = e.logradouro;
       e.endereco.numero = e.numero;
       e.endereco.complemento = e.complemento;
@@ -115,8 +119,6 @@ export class AdicionarEventoComponent implements OnInit, AfterViewInit {
   onSalveComplete(response: any){
     this.eventoForm.reset();
     this.errors = [];
-    localStorage.setItem('eio.token',response.token);
-    localStorage.setItem('eio.user',JSON.stringify(response.email));
     let toasterMessage =  this.snotifireService.success('Registro realizado com Sucesso!', 'Bem vindo', {
       timeout: 2000,
       showProgressBar: true,
