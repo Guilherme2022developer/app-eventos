@@ -28,5 +28,7 @@ export class ListaEventosComponent implements OnInit {
 
   ngOnInit(){
 
+    this.eventoService.obterTodos().subscribe(eventos => this.eventos = eventos,
+      error => this.errorMessage = error)
   }
 }

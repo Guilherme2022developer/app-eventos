@@ -31,4 +31,10 @@ export class EventoService extends SeviceBase{
             }
             return null;
         }
+
+        obterTodos() : Observable<Evento[]>{
+            return this.http
+            .get<Evento[]>(this.UrlServiceV1 + "eventos/obter-todos")
+            .pipe(catchError(super.seviceError));
+        }
 }
