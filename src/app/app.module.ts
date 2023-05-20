@@ -4,7 +4,9 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-
+import { registerLocaleData } from '@angular/common';
+import localesPt from '@angular/common/locales/pt'
+registerLocaleData(localesPt);
 
 import {
   NgxSnotifireModule,

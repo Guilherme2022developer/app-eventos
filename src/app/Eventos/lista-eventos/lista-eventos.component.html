@@ -21,7 +21,7 @@
             <td>{{evento.nome}}</td>
             <td>{{evento.dataInicio | date:'dd/MM/yyyy'}}</td>
             <td>{{evento.dataFim | date:'dd/MM/yyyy'}}</td>
-            <td *ngIf="+evento.valor !== 0">{{evento.valor}}</td>
+            <td *ngIf="+evento.valor !== 0">{{evento.valor | currency:'BRL':'symbol':'1.2-2':'pt'}}</td>
             <td *ngIf='+evento.valor == 0'>Gratuito</td>
 
             <td [ngSwitch]="evento.online">
