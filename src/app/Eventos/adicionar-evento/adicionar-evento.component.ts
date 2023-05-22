@@ -6,6 +6,7 @@ import { fromEvent, merge, Observable } from 'rxjs';
 import { EventoService } from 'src/app/services/evento.service';
 import { GenericValidator } from 'src/app/utils/generic.form.validator';
 import { Categoria, Endereco, Evento } from '../modls_eventos/evento';
+import { DateUtils } from 'src/app/utils/data-type-utils';
 
 
 @Component({
@@ -16,6 +17,8 @@ import { Categoria, Endereco, Evento } from '../modls_eventos/evento';
 export class AdicionarEventoComponent implements OnInit, AfterViewInit {
 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
+
+  public myDatePickerOptions = DateUtils.getMyDatePickerOptions();
 
   public eventoForm: FormGroup;
   public errors: any[] = [];
@@ -99,7 +102,8 @@ export class AdicionarEventoComponent implements OnInit, AfterViewInit {
 
       const e = Object.assign({}, this.eventoForm, this.eventoForm.value);
       let user = this.eventoService.obterUsuario();
-
+      e.dataInicio = DateUtils.getMyDatePickerDate(e.dataInicio);
+      e.dataFim = DateUtils.getMyDatePickerDate(e.dataFim);
       e.organizadorId = user.Id;
       e.endereco.logradouro = e.logradouro;
       e.endereco.numero = e.numero;

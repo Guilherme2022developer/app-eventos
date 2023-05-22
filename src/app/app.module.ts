@@ -7,6 +7,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import localesPt from '@angular/common/locales/pt'
 registerLocaleData(localesPt);
+import {MyDatePickerModule} from 'mydatepicker'
 
 import {
   NgxSnotifireModule,
@@ -66,6 +67,7 @@ import { NaoEncontradoComponent } from './shared/nao-encontrado/nao-encontrado.c
     NgxSnotifireModule.forRoot(),
     AppRoutingModule,
     FormsModule,
+    MyDatePickerModule,
     ReactiveFormsModule,
     TooltipModule.forRoot(),
     CollapseModule.forRoot(),

@@ -56,7 +56,7 @@
     <div class="form-group" [ngClass]="{'has-error': displayMessage['dataInicio']}">
       <label class="col-md-2 control-label">Data de Início</label>
       <div class="col-md-10">
-        <input type="text" id="dataInicio" name="dataInicio" formControlName="dataInicio">
+       <my-date-picker id="dataInicio" name="dataInicio" [options]="myDatePickerOptions" formControlName="dataInicio" ></my-date-picker>
         <span class="text-danger">
           <p [innerHTML]="displayMessage['dataInicio']"></p>
         </span>
@@ -65,7 +65,7 @@
     <div class="form-group" [ngClass]="{'has-error': displayMessage['dataFim']}">
       <label class="col-md-2 control-label">Data de Fim</label>
       <div class="col-md-10">
-        <input type="text" id="dataFim" name="dataFim" formControlName="datafim">
+        <my-date-picker id="dataFim" name="dataFim" [options]="myDatePickerOptions" formControlName="dataFim" ></my-date-picker>
         <span class="text-danger">
           <p [innerHTML]="displayMessage['dataFim']"></p>
         </span>
