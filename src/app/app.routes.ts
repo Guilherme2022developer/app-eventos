@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AdicionarEventoComponent } from './Eventos/adicionar-evento/adicionar-evento.component';
+import { EditarEventoComponent } from './Eventos/editar-evento/editar-evento.component';
 import { ListaEventosComponent } from './Eventos/lista-eventos/lista-eventos.component';
 import { HomeComponent } from './home/home.component';
 import { AuthService } from './services/auth.service';
@@ -17,7 +18,9 @@ export const rootRouterConfig: Routes = [
     {path: 'eventos', component: ListaEventosComponent},
     {path: 'inscricao', component: InscricaoComponent},
     {path: 'entrar', component: LoginComponent},
-    {path: 'novo-evento',canActivate:[AuthService], data:[{claim:{nome:' ',valor:' '}}], component: AdicionarEventoComponent}
+    {path: 'novo-evento',canActivate:[AuthService], data:[{claim:{nome:' ',valor:' '}}], component: AdicionarEventoComponent},
+    {path: 'editar-evento/:id',canActivate:[AuthService], data:[{claim:{nome:' ',valor:' '}}], component: EditarEventoComponent}
+
 
 
 ]
