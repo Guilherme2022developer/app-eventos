@@ -37,4 +37,38 @@ export class EventoService extends SeviceBase{
             .get<Evento[]>(this.UrlServiceV1 + "eventos/obter-todos")
             .pipe(catchError(super.seviceError));
         }
+
+        atualizarEvento(evento: Evento):Observable<Evento>{
+            return this.http
+            .put(this.UrlServiceV1 + "evento/atualizar",evento,super.ObterAuthHeaderJson())
+            .pipe(map(super.extractData),
+            catchError(super.seviceError));
+        };
+
+        ExcluirEvento(id: string):Observable<Evento>{
+            return this.http
+            .delete(this.UrlServiceV1 + "evento/delete/" + id,super.ObterAuthHeaderJson())
+            .pipe(map(super.extractData),
+            catchError(super.seviceError));
+        };
+        obterMeusEventos():Observable<Evento>{
+            return this.http
+            .get(this.UrlServiceV1 + "eventos/meus-eventos",super.ObterAuthHeaderJson())
+            .pipe(map(super.extractData),
+            catchError(super.seviceError));
+        };
+
+        obterEvento(id: string):Observable<Evento>{
+            return this.http
+            .get<Evento>(this.UrlServiceV1 + "eventos/" + id)
+            .pipe(
+            catchError(super.seviceError));
+        };
+//ajustar pra pegar somente do responsavel passando idevento e idorganizador
+        obterMeuEvento(id: string):Observable<Evento>{
+            return this.http
+            .get<Evento>(this.UrlServiceV1 + "eventos/" + id)
+            .pipe(
+            catchError(super.seviceError));
+        };
 }

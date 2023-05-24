@@ -30,6 +30,7 @@ export class EditarEventoComponent implements OnInit, AfterViewInit {
   public gratuito: Boolean;
   public online: Boolean = false;
   public isDataAvailable : boolean;
+  public modalVisible : boolean = false;
   public EventoId: string;
   public sub: Subscription;
 
@@ -166,14 +167,43 @@ export class EditarEventoComponent implements OnInit, AfterViewInit {
       p.dataFim = DateUtils.getMyDatePickerDate(p.dataFim);
       p.valor = CurrencyUtils.ToDecimal(p.valor);
 
-      this.eventoService.atualizarEvento(p).subscribe(result =>{
-         this.onSalveComplete()
-      }, error => {this.onError(error)});
+      this.eventoService.atualizarEvento(p).subscribe(
+        result => {this.onSalveComplete},
+        fail => {this.onError(fail)}
+      );
     }
   }
+atualizarEndereco(){
+  if(this.enderecoForm.dirty && this.enderecoForm.valid){
+    let p = Object.assign({},this.enderecoForm.value);
+    p.eventoId = this.EventoId;
+    if(this.evento.endereco){
+      p.id = this.evento.endereco.id;
+      this.eventoService.atualizarEndereco(p).subscribe(
+        result => {this.onEnderecoSaveComplete},
+        fail => {this.onError(fail)}
+      );
+    }else{
+      this.eventoService.adicionarEndereco(p).subscribe(
+        result => {this.onEnderecoSaveComplete},
+        fail => {this.onError(fail)}
+      );
+    }
+  }
+}
 
+onEnderecoSaveComplete(): void{
+  this.hideModal();
+  this.snotifireService.success('Endereço Atualizado com Sucesso!', 'Bem vindo', {
+    timeout: 2000,
+    showProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+  });
 
-
+  this.obterEvento(this.evento.id)
+  
+}
 
   onSalveComplete(response: any){
     this.eventoForm.reset();
@@ -203,6 +233,14 @@ export class EditarEventoComponent implements OnInit, AfterViewInit {
     });
     this.errors = fail.error.errors;
 
+  }
+
+  public showModal(): void{
+    this.modalVisible = true
+  }
+
+  public hideModal(): void{
+    this.modalVisible = false
   }
 
 }
