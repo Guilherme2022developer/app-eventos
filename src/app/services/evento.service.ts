@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, map, Observable } from "rxjs";
-import { Categoria, Evento } from "../Eventos/modls_eventos/evento";
+import { Categoria, Endereco, Evento } from "../Eventos/modls_eventos/evento";
 import { SeviceBase } from "./sevice.base";
 
 
@@ -66,9 +66,25 @@ export class EventoService extends SeviceBase{
         };
 //ajustar pra pegar somente do responsavel passando idevento e idorganizador
         obterMeuEvento(id: string):Observable<Evento>{
-            return this.http
+           return  this.http
             .get<Evento>(this.UrlServiceV1 + "eventos/" + id)
             .pipe(
             catchError(super.seviceError));
+        };
+
+        adicionarEndereco(endereco: Endereco):Observable<Endereco>{
+            let response =  this.http
+            .post(this.UrlServiceV1 + "endereco",endereco,super.ObterAuthHeaderJson())
+            .pipe(map(super.extractData),
+            catchError(super.seviceError));
+            return response;
+        };
+
+        atualizarEndereco(endereco: Endereco):Observable<Endereco>{
+            let response = this.http
+            .put(this.UrlServiceV1 + "endereco",endereco,super.ObterAuthHeaderJson())
+            .pipe(map(super.extractData),
+            catchError(super.seviceError));
+            return response;
         };
 }

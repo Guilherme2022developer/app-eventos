@@ -144,6 +144,9 @@ export class EditarEventoComponent implements OnInit, AfterViewInit {
     nomeEmpresa: this.evento.nomeEmpresa
    });
 
+    this.online = this.evento.online;
+    this.gratuito = this.evento.gratuito;
+
    if(this.evento.endereco){
     this.enderecoForm.patchValue({
       logradouro: this.evento.endereco.logradouro,
