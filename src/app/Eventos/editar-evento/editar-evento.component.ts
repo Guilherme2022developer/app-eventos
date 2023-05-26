@@ -167,7 +167,7 @@ export class EditarEventoComponent implements OnInit, AfterViewInit {
       let user = this.eventoService.obterUsuario();
       p.organizadorId = user.id;
       p.dataInicio = DateUtils.getMyDatePickerDate(p.dataInicio);
-      p.dataFim = DateUtils.getMyDatePickerDate(p.dataFim);
+      p.DataFim = DateUtils.getMyDatePickerDate(p.DataFim);
       p.valor = CurrencyUtils.ToDecimal(p.valor);
 
       this.eventoService.atualizarEvento(p).subscribe(
